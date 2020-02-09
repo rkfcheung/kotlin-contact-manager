@@ -4,6 +4,9 @@ spring:
   thymeleaf:
     mode: HTML
 
+server:
+  port: ${PORT:8080}
+
 logging:
   level:
     org:
