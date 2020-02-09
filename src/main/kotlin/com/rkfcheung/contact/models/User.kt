@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 @Entity
-data class User (@Id @GeneratedValue var id: Long? = null,
-                 var username: String,
-                 var password: String) {
+data class User(var username: String,
+                var password: String,
+                @Id @GeneratedValue var id: Long? = null) {
 }

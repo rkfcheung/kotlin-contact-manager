@@ -20,22 +20,25 @@ class UserService {
         return userRepository.save(user)
     }
 
-    fun get(id: Long) = userRepository.findById(id)
-
-    fun update(id: Long, user: User): User? {
-        if (get(id).isEmpty)
+    fun get(id: Long): User? {
+        val found = userRepository.findById(id)
+        if (found.isEmpty)
             return null
-        user.id = id
-        return userRepository.save(user)
+        return found.get()
+    }
+
+    fun update(id: Long, password: String): Boolean {
+        val user = get(id) ?: return false
+        user.password = password
+        userRepository.save(user)
+        return true
     }
 
     fun delete(id: Long): Boolean {
-        val saved= get(id)
-        if (saved.isEmpty)
+        val found= get(id) ?: return false
+        if (contactRepository.findByUser(found).isNotEmpty())
             return false
-        if (contactRepository.findByUserId(id).isNotEmpty())
-            return false
-        userRepository.delete(saved.get())
+        userRepository.delete(found)
         return true
     }
 

@@ -1,8 +1,9 @@
 package com.rkfcheung.contact.repositories
 
 import com.rkfcheung.contact.models.Contact
+import com.rkfcheung.contact.models.User
 import org.springframework.data.repository.PagingAndSortingRepository
 
 interface ContactRepository: PagingAndSortingRepository<Contact, Long> {
-    fun findByUserId(id: Long): List<Contact>
+    fun findByUser(user: User): List<Contact>
 }
