@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'person')}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'user')}">
 
 <body>
 
 <div class="container">
     <h1>Contact Manger</h1>
-    <form action="#" th:action="@{/person}" th:object="${personForm}" method="post">
+    <form action="#" th:action="@{/user}" th:object="${userForm}" method="post">
         <table>
             <tr>
                 <td>Username:</td>
@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <td>
-                    <button type="submit" class="btn btn-lg btn-primary btn-block" value="Register">Submit</button>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
                 </td>
             </tr>
         </table>

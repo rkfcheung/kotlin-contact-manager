@@ -15,31 +15,32 @@ import org.springframework.security.crypto.password.PasswordEncoder
 @EnableWebSecurity
 class SecurityConfig : WebSecurityConfigurerAdapter() {
     @Autowired
-    private lateinit var userService: UserService
+    private val userService: UserService? = null
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
         return BCryptPasswordEncoder()
     }
 
+    @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
         http
                 .authorizeRequests()
-                .antMatchers("/contact").hasAnyRole()
+                 //.antMatchers("/contact").hasRole("USER")
                 .antMatchers("/", "/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .failureUrl("/login?error")
                 .defaultSuccessUrl("/contact")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
     }
 
+    @Throws(Exception::class)
     override fun configure(auth: AuthenticationManagerBuilder) {
-        auth.userDetailsService(userService).passwordEncoder(passwordEncoder())
+        auth
+                .userDetailsService(userService)
+                .passwordEncoder(passwordEncoder())
     }
 }

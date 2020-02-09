@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'contact')}">
+
+<body>
+
+<div class="container">
+    <h1>Contact Manger</h1>
+    <form action="#" th:action="@{/contact}" th:object="${contactForm}" method="post">
+        <table>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" class="form-control" id="firstName" placeholder="First Name" th:field="*{firstName}"/></td>
+                <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</td>
+            </tr>
+            <tr>
+                <td>Photo Url:</td>
+                <td><input type="text" class="form-control" id="photoUrl" placeholder="Photo Url" th:field="*{photoUrl}"/></td>
+                <td th:if="${#fields.hasErrors('photoUrl')}" th:errors="*{photoUrl}">Photo Url Error</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" class="form-control" id="email" placeholder="Email" th:field="*{email}"/></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><input type="text" class="form-control" id="phone" placeholder="Phone" th:field="*{phone}"/></td>
+                <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Add</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>
