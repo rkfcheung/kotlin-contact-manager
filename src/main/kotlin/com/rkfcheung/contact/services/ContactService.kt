@@ -31,7 +31,7 @@ class ContactService {
     fun update(contact: Contact): Contact? {
         val user = contact.user
         val userId = user.id ?: return null
-        val found = contactRepository.findByUserIdAndEmail(userId, contact.email ?: "missing")
+        val found = contactRepository.findByUserIdAndEmail(userId, contact.email)
         if (contact.id == null)
             contact.id = found.minBy { it.id ?: 0L }?.id
         contact.id?.let { id ->
