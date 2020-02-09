@@ -1,7 +1,6 @@
 package com.rkfcheung.contact.controllers
 
 import com.rkfcheung.contact.forms.UserForm
-import com.rkfcheung.contact.models.User
 import com.rkfcheung.contact.services.UserService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

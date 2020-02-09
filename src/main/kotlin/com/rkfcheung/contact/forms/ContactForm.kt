@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 data class ContactForm (var firstName: @NotNull @Size(min = 4, max = 32) String? = null,
-                        var photoUrl: @NotNull @URL String? = null,
+                        var photoUrl: @NotNull @URL @Size(max = 255) String? = null,
                         var email: @NotNull @Email String? = null,
                         var phone: @NotNull @Size(min = 4, max = 32) String? = null) {
     fun toContact(user: User?): Contact? {

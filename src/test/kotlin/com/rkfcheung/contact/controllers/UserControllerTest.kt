@@ -10,7 +10,7 @@ import org.springframework.boot.web.server.LocalServerPort
 import java.util.concurrent.TimeUnit
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-internal class PersonControllerTest {
+internal class UserControllerTest {
 
     @LocalServerPort
     private var port: Int? = null

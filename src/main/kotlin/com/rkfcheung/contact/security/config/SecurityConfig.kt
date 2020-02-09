@@ -2,6 +2,7 @@ package com.rkfcheung.contact.security.config
 
 import com.rkfcheung.contact.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -22,7 +23,6 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         return BCryptPasswordEncoder()
     }
 
-    @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
         http
                 .authorizeRequests()
@@ -37,7 +37,6 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .logoutSuccessUrl("/")
     }
 
-    @Throws(Exception::class)
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth
                 .userDetailsService(userService)

@@ -9,12 +9,14 @@
         <table>
             <tr>
                 <td>First Name:</td>
-                <td><input type="text" class="form-control" id="firstName" placeholder="First Name" th:field="*{firstName}"/></td>
+                <td><input type="text" class="form-control" id="firstName" placeholder="First Name"
+                           th:field="*{firstName}"/></td>
                 <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</td>
             </tr>
             <tr>
                 <td>Photo Url:</td>
-                <td><input type="text" class="form-control" id="photoUrl" placeholder="Photo Url" th:field="*{photoUrl}"/></td>
+                <td><input type="text" class="form-control" id="photoUrl" placeholder="Photo Url"
+                           th:field="*{photoUrl}"/></td>
                 <td th:if="${#fields.hasErrors('photoUrl')}" th:errors="*{photoUrl}">Photo Url Error</td>
             </tr>
             <tr>
@@ -34,6 +36,46 @@
             </tr>
         </table>
     </form>
+    <table>
+            
+        <thead>
+                
+        <tr>
+                        
+            <th> First Name</th>
+                        
+            <th> Photo Url</th>
+                        
+            <th> Email</th>
+                        
+            <th> Phone</th>
+                    
+        </tr>
+            
+        </thead>
+            
+        <tbody>
+            
+        <tr th:if="${contacts.empty}">
+                        
+            <td colspan="4"> No Contacts Available</td>
+                    
+        </tr>
+                
+        <tr th:each="contact : ${contacts}">
+                        
+            <td><span th:text="${contact.firstName}"> First Name </span></td>
+                        
+            <td><span th:text="${contact.photoUrl}"> Photo Url </span></td>
+                        
+            <td><span th:text="${contact.email}"> Email </span></td>
+                        
+            <td><span th:text="${contact.phone}"> Phone </span></td>
+                    
+        </tr>
+            
+        </tbody>
+    </table>
 </div>
 
 </body>
