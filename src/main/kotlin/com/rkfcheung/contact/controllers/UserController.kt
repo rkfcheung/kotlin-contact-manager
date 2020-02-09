@@ -26,6 +26,7 @@ class UserController {
     @PostMapping("/user")
     fun savePerson(userForm: @Valid UserForm, bindingResult: BindingResult): String {
         if (bindingResult.hasErrors()) {
+            log.info(bindingResult.toString())
             return "user"
         }
 

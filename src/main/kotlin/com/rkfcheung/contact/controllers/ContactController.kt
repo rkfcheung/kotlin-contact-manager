@@ -33,7 +33,10 @@ class ContactController {
     @PostMapping("/contact")
     fun saveContact(contactForm: @Valid ContactForm, bindingResult: BindingResult): String {
         //log.info(contactForm.toString())
-        //log.info(bindingResult.toString())
+        if (bindingResult.hasErrors()) {
+            log.info(bindingResult.toString())
+            return "contact"
+        }
 
         contactForm.toContact(loginUser())?.let {
             val created = contactService.create(it)
