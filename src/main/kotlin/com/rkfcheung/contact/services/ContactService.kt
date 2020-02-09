@@ -4,6 +4,8 @@ import com.rkfcheung.contact.models.Contact
 import com.rkfcheung.contact.repositories.ContactRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+
 
 @Service
 class ContactService {
@@ -21,9 +23,28 @@ class ContactService {
 
     fun search(userId: Long, firstName: String) = contactRepository.findByUserIdAndFirstName(userId, firstName)
 
-    fun create(contact: Contact) = contactRepository.save(contact)
+    fun searchByEmail(userId: Long, email: String) = contactRepository.findByUserIdAndEmail(userId, email).firstOrNull()
 
-    fun update(contact: Contact) = contactRepository.save(contact)
+    fun create(contact: Contact) = update(contact)
 
-    fun delete(id: Long) = contactRepository.deleteById(id)
+    @Transactional
+    fun update(contact: Contact): Contact? {
+        val user = contact.user
+        val userId = user.id ?: return null
+        val found = contactRepository.findByUserIdAndEmail(userId, contact.email)
+        if (contact.id == null)
+            contact.id = found.minBy { it.id ?: 0L }?.id
+        contact.id?.let { id ->
+            found.filterNot { it.id == id }.forEach { contactRepository.delete(it) }
+        }
+
+        return contactRepository.save(contact)
+    }
+
+    fun delete(id: Long): Boolean {
+        view(id) ?: return false
+        contactRepository.deleteById(id)
+
+        return true
+    }
 }
