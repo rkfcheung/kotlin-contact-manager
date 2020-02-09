@@ -55,3 +55,8 @@ tasks.withType<KotlinCompile> {
 		jvmTarget = "1.8"
 	}
 }
+
+tasks.register("stage") {
+	dependsOn("clean", "build")
+	tasks["build"].mustRunAfter(tasks["clean"])
+}
