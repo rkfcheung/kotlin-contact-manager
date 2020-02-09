@@ -56,7 +56,7 @@ internal class UserServiceTest {
         val user8 = userService.get(id)
         assertEquals(id, user8?.id)
 
-        assertNull(userService.get(id * 2))
+        assertNull(userService.get(-1L))
     }
 
     @Test

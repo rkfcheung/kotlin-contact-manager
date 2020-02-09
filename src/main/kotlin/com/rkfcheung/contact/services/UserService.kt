@@ -36,7 +36,7 @@ class UserService {
 
     fun delete(id: Long): Boolean {
         val found= get(id) ?: return false
-        if (contactRepository.findByUser(found).isNotEmpty())
+        if (contactRepository.findByUserId(id).isNotEmpty())
             return false
         userRepository.delete(found)
         return true
