@@ -1,13 +1,17 @@
 package com.rkfcheung.contact.services
 
 import com.rkfcheung.contact.models.User
+import com.rkfcheung.contact.models.UserPrincipal
 import com.rkfcheung.contact.repositories.ContactRepository
 import com.rkfcheung.contact.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
-class UserService {
+class UserService : UserDetailsService {
     @Autowired
     private lateinit var userRepository: UserRepository
 
@@ -35,7 +39,7 @@ class UserService {
     }
 
     fun delete(id: Long): Boolean {
-        val found= get(id) ?: return false
+        val found = get(id) ?: return false
         if (contactRepository.findByUserId(id).isNotEmpty())
             return false
         userRepository.delete(found)
@@ -44,5 +48,10 @@ class UserService {
 
     fun list(): Iterable<User> {
         return userRepository.findAll()
+    }
+
+    override fun loadUserByUsername(username: String): UserDetails {
+        val user = userRepository.findByUsername(username) ?: throw UsernameNotFoundException("User '$username' not found")
+        return UserPrincipal(user)
     }
 }

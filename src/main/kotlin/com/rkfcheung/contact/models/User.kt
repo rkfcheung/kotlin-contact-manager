@@ -7,5 +7,4 @@ import javax.persistence.Id
 @Entity
 data class User(var username: String,
                 var password: String,
-                @Id @GeneratedValue var id: Long? = null) {
-}
+                @Id @GeneratedValue var id: Long? = null)

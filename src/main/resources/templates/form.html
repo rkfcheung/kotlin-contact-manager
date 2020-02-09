@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'person')}">
+
+<body>
+
+<div class="container">
+    <h1>Contact Manger</h1>
+    <form action="#" th:action="@{/person}" th:object="${personForm}" method="post">
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}"/></td>
+                <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}"/></td>
+                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block" value="Register">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

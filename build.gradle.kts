@@ -39,7 +39,7 @@ dependencies {
 	implementation("org.webjars:webjars-locator:0.38")
 	implementation("org.webjars:jquery:3.4.1")
 	implementation("org.webjars:jquery-ui:1.12.1")
-	implementation("org.webjars:bootstrap:4.4.1")
+	implementation("org.webjars:bootstrap:3.4.1")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
@@ -47,6 +47,9 @@ dependencies {
 	}
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation("org.seleniumhq.selenium:selenium-java:3.141.59")
+	testImplementation("org.seleniumhq.selenium:selenium-htmlunit-driver:2.52.0")
+	testImplementation("org.w3c.css:sac:1.3")
 }
 
 tasks.withType<Test> {
