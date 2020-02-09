@@ -36,6 +36,10 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	implementation("org.springframework.session:spring-session-core")
+	implementation("org.webjars:webjars-locator:0.38")
+	implementation("org.webjars:jquery:3.4.1")
+	implementation("org.webjars:jquery-ui:1.12.1")
+	implementation("org.webjars:bootstrap:4.4.1")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
